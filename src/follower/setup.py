@@ -1,9 +1,7 @@
 from setuptools import setup
 from glob import glob
 import os
-
 package_name = 'follower'
-
 setup(
     name=package_name,
     version='1.0.0',
@@ -34,17 +32,10 @@ setup(
     description='Have a differential drive robot follow a Robotrace track by using a camera.',
     license='MIT',
     tests_require=['pytest'],
-
     entry_points={
         'console_scripts': [
             'tester = follower.test_topic:main',
-
-            # TODO: Add your main robot controller node here.
-            # This is the file that contains your follower logic (cmd_vel publisher).
-            # Without this, ROS2 cannot run your robot controller using "ros2 run".
-            #
-            # Format:
-            # follower = follower.<your_python_file>:main
+            'follower = follower.follower_node:main',
         ],
     },
 )
