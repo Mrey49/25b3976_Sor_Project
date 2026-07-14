@@ -133,6 +133,8 @@ def timer_callback():
     output = image
     line, mark_side = get_contour_data(mask, output[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop])
 
+    print(f"[DEBUG] line_detected={bool(line)} line={line} mark_side={mark_side}")
+
     message = Twist()
 
     # Tracking error & line-loss handling.
@@ -156,6 +158,8 @@ def timer_callback():
             just_seen_line = False
         lost_frame_count += 1
         message.linear.x = LOST_LINEAR_SPEED
+
+    print(f"[DEBUG] error={error:.2f} lost_frame_count={lost_frame_count} just_seen_line={just_seen_line}")
 
     # Lap completion detection.
     # A marker seen on the right side of the line, while the robot is
@@ -206,6 +210,8 @@ def timer_callback():
     else:
         message.linear.x = 0.0
         message.angular.z = 0.0
+
+    print(f"[DEBUG] should_move={should_move} linear.x={message.linear.x:.3f} angular.z={message.angular.z:.3f}")
 
     publisher.publish(message)
 
