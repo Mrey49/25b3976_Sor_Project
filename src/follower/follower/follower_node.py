@@ -57,9 +57,11 @@ def stop_follower_callback(request, response):
 def image_callback(msg):
     global image_input
     image_input = bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
+    print(f"[DEBUG] image_callback: received frame shape={image_input.shape}", flush=True)
 
 def get_contour_data(mask, out):
     contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    print(f"[DEBUG] get_contour_data: found {len(contours)} contours", flush=True)
 
     mark = {}
     line = {}
@@ -118,6 +120,8 @@ def timer_callback():
     global error, image_input, just_seen_line, just_seen_right_mark
     global should_move, right_mark_count, finalization_countdown, lost_frame_count
 
+    print(f"[DEBUG] timer_callback: fired, image_input_type={type(image_input).__name__}", flush=True)
+
     if type(image_input) != np.ndarray:
         return
 
@@ -133,7 +137,7 @@ def timer_callback():
     output = image
     line, mark_side = get_contour_data(mask, output[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop])
 
-    print(f"[DEBUG] line_detected={bool(line)} line={line} mark_side={mark_side}")
+    print(f"[DEBUG] line_detected={bool(line)} line={line} mark_side={mark_side}", flush=True)
 
     message = Twist()
 
@@ -159,7 +163,7 @@ def timer_callback():
         lost_frame_count += 1
         message.linear.x = LOST_LINEAR_SPEED
 
-    print(f"[DEBUG] error={error:.2f} lost_frame_count={lost_frame_count} just_seen_line={just_seen_line}")
+    print(f"[DEBUG] error={error:.2f} lost_frame_count={lost_frame_count} just_seen_line={just_seen_line}", flush=True)
 
     # Lap completion detection.
     # A marker seen on the right side of the line, while the robot is
@@ -211,7 +215,7 @@ def timer_callback():
         message.linear.x = 0.0
         message.angular.z = 0.0
 
-    print(f"[DEBUG] should_move={should_move} linear.x={message.linear.x:.3f} angular.z={message.angular.z:.3f}")
+    print(f"[DEBUG] should_move={should_move} linear.x={message.linear.x:.3f} angular.z={message.angular.z:.3f}", flush=True)
 
     publisher.publish(message)
 
@@ -236,6 +240,7 @@ def timer_callback():
 
 
 def main():
+    print("[DEBUG] follower_node main() starting up", flush=True)
     rclpy.init()
     global node
     node = Node('follower')
