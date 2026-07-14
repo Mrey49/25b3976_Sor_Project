@@ -65,32 +65,15 @@
 
     <!--
     ======================================================================
-    TODO 1 — Physics Tuning
+    TODO 1 — Physics Tuning (DONE)
     ======================================================================
-
-    TODO 1A:
-    Tune the wheel radius values used in the wheel collision geometry and
-    DiffDrive plugin so the simulated wheel dimensions match the robot.
-
-    Hints:
-    - <collision><geometry><cylinder><radius>
-    - <plugin><wheel_radius>
-
-    TODO 1B:
-    Adjust the wheel separation to match the actual distance between the
-    left and right wheels for accurate turning behaviour.
-
-    Hints:
-    - Wheel joint/link poses
-    - <plugin><wheel_separation>
-
-    TODO 1C:
-    Improve traction and contact stability by tuning wheel friction and
-    contact parameters to reduce slipping and oscillations.
-
-    Hints:
-    - <surface><friction>
-    - <surface><contact>
+    1A: wheel_radius = 0.033 kept consistent between collision geometry
+        and the DiffDrive plugin below.
+    1B: wheel_separation set to 0.288 in the plugin to match the actual
+        distance between wheel_left_link/wheel_right_link (y = ±0.144).
+    1C: mu/mu2 dropped from an unrealistic 100000 to 1.0 (plenty of grip,
+        avoids ODE contact jitter/oscillation); contact stiffness (kp)
+        raised to 1e6 so wheels don't sink into the ground plane.
     -->
 
     <link name="wheel_left_link">
@@ -114,8 +97,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>100000.0</mu>
-              <mu2>100000.0</mu2>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
               <fdir1>0 0 0</fdir1>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
@@ -125,7 +108,7 @@
             <ode>
               <soft_cfm>0</soft_cfm>
               <soft_erp>0.2</soft_erp>
-              <kp>1e+5</kp>
+              <kp>1e+6</kp>
               <kd>1</kd>
               <max_vel>0.01</max_vel>
               <min_depth>0.001</min_depth>
@@ -166,8 +149,8 @@
         <surface>
           <friction>
             <ode>
-              <mu>100000.0</mu>
-              <mu2>100000.0</mu2>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
               <fdir1>0 0 0</fdir1>
               <slip1>0.0</slip1>
               <slip2>0.0</slip2>
@@ -177,7 +160,7 @@
             <ode>
               <soft_cfm>0</soft_cfm>
               <soft_erp>0.2</soft_erp>
-              <kp>1e+5</kp>
+              <kp>1e+6</kp>
               <kd>1</kd>
               <max_vel>0.01</max_vel>
               <min_depth>0.001</min_depth>
@@ -258,30 +241,18 @@
 
     <!--
     ======================================================================
-    TODO 2 — Camera Configuration
+    TODO 2 — Camera Configuration (DONE)
     ======================================================================
-
-    TODO 2A:
-    Adjust the camera mounting position and tilt so the track remains
-    clearly visible in front of the robot.
-
-    Hints:
-    - camera_rgb_optical_frame <pose>
-    - camera_joint <pose>
-
-    TODO 2B:
-    Tune the camera field of view for reliable lane visibility.
-
-    Hints:
-    - <horizontal_fov>
-
-    TODO 2C:
-    Configure the simulated camera update rate and image noise to achieve
-    stable perception under realistic sensor conditions.
-
-    Hints:
-    - <update_rate>
-    - <noise>
+    2A: Camera moved down/forward to sit near the top of the chassis
+        (was floating at z=0.25 with too steep a tilt) and re-angled to
+        ~0.6 rad (~34°) downward so it looks a short distance ahead at
+        the ground instead of almost straight down.
+    2B: horizontal_fov widened from ~62° to ~77° (1.35 rad) so the line
+        stays in frame through turns and markers aren't clipped at the
+        edges.
+    2C: update_rate kept at 30 Hz; noise stddev tightened slightly
+        (0.007 -> 0.005) for a cleaner threshold signal while still
+        modeling realistic sensor noise.
     -->
 
     <link name="camera_link"/>
@@ -296,7 +267,7 @@
         <mass>0.035</mass>
       </inertial>
 
-      <pose>0.05 0 0.25 0 1.0 0</pose> <!-- THE PARAMETERS THAT MATTER -->
+      <pose>0.035 0 0.14 0 0.6 0</pose> <!-- THE PARAMETERS THAT MATTER -->
       <sensor name="camera" type="camera">
         <always_on>true</always_on>
         <visualize>true</visualize>
@@ -304,7 +275,7 @@
         <topic>camera/image_raw</topic>
         <gz_frame_id>camera_rgb_optical_frame</gz_frame_id>
         <camera name="picam">
-          <horizontal_fov>1.085595</horizontal_fov>
+          <horizontal_fov>1.35</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
@@ -317,7 +288,7 @@
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.007</stddev>
+            <stddev>0.005</stddev>
           </noise>
         </camera>
       </sensor>
@@ -380,36 +351,28 @@
 
     <!--
     ======================================================================
-    TODO 3 — Control Plugin
+    TODO 3 — Control Plugin (DONE)
     ======================================================================
-
-    TODO 3A:
-    Update the DiffDrive plugin to match the tuned physical robot model.
-
-    Hints:
-    - <wheel_radius>
-    - <wheel_separation>
-
-    TODO 3B:
-    Tune the controller parameters for smoother robot motion and odometry.
-
-    Hints:
-    - <max_linear_acceleration>
-    - <odom_publish_frequency>
+    3A: wheel_radius/wheel_separation now mirror the physical geometry
+        from TODO 1 (separation corrected to 0.288 to match the wheel
+        link y-offsets of ±0.144).
+    3B: max_linear_acceleration raised 1.0 -> 2.5 for snappier response
+        to corrections; odom_publish_frequency raised 30 -> 50 for
+        smoother odometry feeding the control loop.
     -->
 
     <plugin filename="gz-sim-diff-drive-system"
             name="gz::sim::systems::DiffDrive">
       <left_joint>wheel_left_joint</left_joint>
       <right_joint>wheel_right_joint</right_joint>
-      <wheel_separation>0.287</wheel_separation>
+      <wheel_separation>0.288</wheel_separation>
       <wheel_radius>0.033</wheel_radius>
-      <max_linear_acceleration>1.0</max_linear_acceleration>
+      <max_linear_acceleration>2.5</max_linear_acceleration>
       <topic>cmd_vel</topic>
       <odom_topic>odom</odom_topic>
       <frame_id>odom</frame_id>
       <child_frame_id>base_footprint</child_frame_id>
-      <odom_publish_frequency>30</odom_publish_frequency>
+      <odom_publish_frequency>50</odom_publish_frequency>
     </plugin>
 
     <!-- ====== Gz Harmonic Joint State Publisher ====== -->
