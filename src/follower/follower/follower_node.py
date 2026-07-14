@@ -22,6 +22,7 @@ FINALIZATION_PERIOD = 4
 MAX_ERROR = 30
 SEARCH_TIMEOUT = int(1.0 / TIMER_PERIOD)   # ~1 second of holding the last turn before actively searching
 SEARCH_ANGULAR_SPEED = 0.5
+LOST_LINEAR_SPEED = LINEAR_SPEED * 0.4     # reduced (not zero) forward speed while the line is lost
 
 lower_bgr_values = np.array([31,  42,  53])
 upper_bgr_values = np.array([255, 255, 255])
@@ -154,7 +155,7 @@ def timer_callback():
             error = error * LOSS_FACTOR
             just_seen_line = False
         lost_frame_count += 1
-        message.linear.x = 0.0
+        message.linear.x = LOST_LINEAR_SPEED
 
     # Lap completion detection.
     # A marker seen on the right side of the line, while the robot is
@@ -198,6 +199,7 @@ def timer_callback():
     # at a fixed rate, until the line is reacquired.
     if should_move:
         if lost_frame_count > SEARCH_TIMEOUT:
+            message.linear.x = 0.0
             message.angular.z = -SEARCH_ANGULAR_SPEED if error > 0 else SEARCH_ANGULAR_SPEED
         else:
             message.angular.z = -error * KP
