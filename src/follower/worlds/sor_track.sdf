@@ -100,26 +100,11 @@
     </include>
 
     <!-- ====== Robot ====== -->
-
-    <!-- TODO:
-    Set the robot spawn pose carefully.
-
-    Format: x y z roll pitch yaw
-
-    What to do:
-    - Choose x,y so robot starts near but not exactly on the line
-    - Keep z slightly above ground (≈0.01)
-    - roll/pitch must stay 0 (no tilt)
-    - yaw controls initial direction (VERY IMPORTANT)
-
-    Why it matters:
-    - wrong position → robot never sees line
-    - perfect position → no learning signal (too easy)
-    - wrong yaw → robot drives away from track immediately
-    -->
-
+    <!-- Spawn slightly before the track start, offset ~6 cm left of the line.
+         z=0.01 keeps wheels clear of the ground plane at spawn.
+         yaw=0 → robot faces +X (adjust if your track runs along a different axis). -->
     <include>
-      <pose>TODO: x y z roll pitch yaw</pose>
+      <pose>-0.4 0.06 0.01 0 0 0</pose>
       <uri>model://custom_turtlebot</uri>
     </include>
 
