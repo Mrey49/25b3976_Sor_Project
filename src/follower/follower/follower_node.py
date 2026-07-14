@@ -20,6 +20,8 @@ LOSS_FACTOR = 1.2
 TIMER_PERIOD = 0.06
 FINALIZATION_PERIOD = 4
 MAX_ERROR = 30
+SEARCH_TIMEOUT = int(1.0 / TIMER_PERIOD)   # ~1 second of holding the last turn before actively searching
+SEARCH_ANGULAR_SPEED = 0.5
 
 lower_bgr_values = np.array([31,  42,  53])
 upper_bgr_values = np.array([255, 255, 255])
@@ -34,13 +36,15 @@ just_seen_right_mark = False
 should_move = False
 right_mark_count = 0
 finalization_countdown = None
+lost_frame_count = 0
 
 
 def start_follower_callback(request, response):
-    global should_move, right_mark_count, finalization_countdown
+    global should_move, right_mark_count, finalization_countdown, lost_frame_count
     should_move = True
     right_mark_count = 0
     finalization_countdown = None
+    lost_frame_count = 0
     return response
 
 def stop_follower_callback(request, response):
@@ -111,7 +115,7 @@ def get_contour_data(mask, out):
 
 def timer_callback():
     global error, image_input, just_seen_line, just_seen_right_mark
-    global should_move, right_mark_count, finalization_countdown
+    global should_move, right_mark_count, finalization_countdown, lost_frame_count
 
     if type(image_input) != np.ndarray:
         return
@@ -143,11 +147,13 @@ def timer_callback():
     if line:
         error = line['x'] - width / 2
         just_seen_line = True
+        lost_frame_count = 0
         message.linear.x = LINEAR_SPEED
     else:
         if just_seen_line:
             error = error * LOSS_FACTOR
             just_seen_line = False
+        lost_frame_count += 1
         message.linear.x = 0.0
 
     # Lap completion detection.
@@ -182,8 +188,19 @@ def timer_callback():
     # than just not publishing) guarantees the robot doesn't keep
     # coasting on the last command that was computed before it was told
     # to stop.
+    #
+    # If the line has been missing for a while, holding the same
+    # (possibly amplified) turn forever isn't enough -- the robot may
+    # have already turned past where the line would reappear. Past
+    # SEARCH_TIMEOUT frames of not seeing it, switch to an active
+    # search: rotate in place, continuing in whichever direction the
+    # line was last seen (same sign convention as the normal correction),
+    # at a fixed rate, until the line is reacquired.
     if should_move:
-        message.angular.z = -error * KP
+        if lost_frame_count > SEARCH_TIMEOUT:
+            message.angular.z = -SEARCH_ANGULAR_SPEED if error > 0 else SEARCH_ANGULAR_SPEED
+        else:
+            message.angular.z = -error * KP
     else:
         message.linear.x = 0.0
         message.angular.z = 0.0
