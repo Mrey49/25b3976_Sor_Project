@@ -59,25 +59,48 @@ def get_contour_data(mask, out):
     mark = {}
     line = {}
 
+    # The track line is a big blob (MIN_AREA_TRACK+), a lap marker is a
+    # smaller blob (MIN_AREA..MIN_AREA_TRACK). Anything below MIN_AREA is
+    # noise and gets discarded. If several marker-sized blobs show up in
+    # one frame, only the largest is trustworthy, so we keep candidates
+    # and pick the best one at the end instead of overwriting blindly.
+    line_candidates = []
+    mark_candidates = []
+
     for contour in contours:
         M = cv2.moments(contour)
+        area = M['m00']
 
-        # TODO 1 — Classify Contours into Track Line vs. Lap Marker
-        #
-        # Using image moments (M), distinguish the track line from a lap
-        # marker blob purely by contour size, and locate each one's
-        # centroid. Discard anything too small to be meaningful.
-        #
-        # Keep in mind:
-        #   - The mask was taken from a horizontally-cropped region of the
-        #     frame, so any x-coordinate you compute needs to be re-based
-        #     onto the full image before you store it.
-        #   - Multiple marker-sized blobs can appear in one frame; only one
-        #     should be kept as `mark`. Think about which one is the right
-        #     one to trust.
-        #   - Populate `line` and/or `mark` dicts with 'x' and 'y' keys so
-        #     the rest of the function can use them.
-        pass
+        if area < MIN_AREA:
+            continue
+
+        # Centroid in mask (cropped) coordinates.
+        cx = int(M['m10'] / area)
+        cy = int(M['m01'] / area)
+
+        # The mask came from a horizontally-cropped slice of the frame,
+        # so x needs to be re-based onto the full image. y is untouched
+        # since the crop only affects columns (see crop_size).
+        cx_full = cx + crop_w_start
+
+        if area >= MIN_AREA_TRACK:
+            line_candidates.append((area, cx_full, cy))
+            cv2.circle(out, (cx, cy), 5, (0, 255, 0), -1)
+        else:
+            mark_candidates.append((area, cx_full, cy))
+            cv2.circle(out, (cx, cy), 5, (255, 0, 0), -1)
+
+    if line_candidates:
+        # Largest track-sized blob wins.
+        _, cx_full, cy = max(line_candidates, key=lambda c: c[0])
+        line['x'] = cx_full
+        line['y'] = cy
+
+    if mark_candidates:
+        # Largest marker-sized blob wins (most reliable detection).
+        _, cx_full, cy = max(mark_candidates, key=lambda c: c[0])
+        mark['x'] = cx_full
+        mark['y'] = cy
 
     if mark and line:
         mark_side = "right" if mark['x'] > line['x'] else "left"
@@ -107,49 +130,65 @@ def timer_callback():
 
     message = Twist()
 
-    # TODO 2 — Compute Tracking Error & Handle Line Loss
-    #
-    # `line` (from get_contour_data) tells you whether the track was seen
-    # this frame. Turn that into a tracking error and a forward-speed
-    # decision:
-    #   - When the line is visible, derive `error` from where the line
-    #     centroid sits relative to the frame center, and drive forward.
-    #   - When the line disappears, the robot shouldn't just go blind —
-    #     decide what `error` should become using the fact that it was
-    #     just following a curve in some direction, and stop advancing
-    #     until the line is reacquired.
-    #   - `just_seen_line` exists so you can tell "line lost this frame"
-    #     apart from "line has been lost for a while" — use it.
-    pass
+    # Tracking error & line-loss handling.
+    # While the line is visible, error is how far its centroid sits from
+    # the horizontal center of the frame (positive = line is to the
+    # right). When it disappears, we don't want to suddenly go straight
+    # (which would likely send the robot off the track) -- instead we
+    # amplify whatever error we last had, betting that the track kept
+    # curving the same direction, and stop advancing until it's found
+    # again. just_seen_line lets us only do the amplification once, right
+    # when the line is first lost, rather than growing it every frame
+    # it's missing.
+    if line:
+        error = line['x'] - width / 2
+        just_seen_line = True
+        message.linear.x = LINEAR_SPEED
+    else:
+        if just_seen_line:
+            error = error * LOSS_FACTOR
+            just_seen_line = False
+        message.linear.x = 0.0
 
-    # TODO 3 — Detect Lap Completion from Marker Crossings
-    #
-    # `mark_side` tells you which side of the line a marker was seen on
-    # this frame (or None). Use repeated right-side marker sightings to
-    # detect when a full lap has been completed, and kick off a
-    # finalization countdown at that point.
-    #
-    # Things to guard against:
-    #   - The same physical marker will be visible across many consecutive
-    #     frames — make sure it's only counted once per crossing.
-    #   - A marker glimpsed while the robot is badly off-center is
-    #     unreliable and shouldn't count.
-    #   - Don't restart the countdown if one is already running.
-    #   - Think about how many right-side crossings actually correspond to
-    #     "one full lap done" versus just "passed the start marker."
-    pass
+    # Lap completion detection.
+    # A marker seen on the right side of the line, while the robot is
+    # roughly centered on the track (small |error|), counts as a valid
+    # crossing. The same physical marker stays in view for many
+    # consecutive frames, so just_seen_right_mark debounces that into a
+    # single count per crossing: it's set the first frame a right-side
+    # marker is validly seen, and only cleared once the marker is no
+    # longer seen on the right (including when it's gone entirely),
+    # arming the count for the next crossing.
+    # The first right-side crossing is just the start/finish marker at
+    # the beginning of the lap; the second right-side crossing is the
+    # robot coming back around to that same marker, i.e. one full lap.
+    if mark_side == "right":
+        if abs(error) < MAX_ERROR and not just_seen_right_mark:
+            right_mark_count += 1
+            just_seen_right_mark = True
+            if right_mark_count >= 2 and finalization_countdown is None:
+                finalization_countdown = int(FINALIZATION_PERIOD / TIMER_PERIOD)
+    else:
+        just_seen_right_mark = False
 
-    # TODO 4 — Implement Proportional Steering & Command Gating
-    #
-    # Turn `error` into an actual steering command, and make sure the
-    # robot only moves when it's supposed to.
-    #   - The steering response should scale with how far off-center the
-    #     line is, and correct *toward* the line — think carefully about
-    #     sign, or the robot will steer itself further off track.
-    #   - `should_move` controls whether the follower is even active;
-    #     make sure the robot never keeps moving on a stale command once
-    #     it's been told to stop.
-    pass
+    # Proportional steering & command gating.
+    # Steering scales with how far off-center the line is. error > 0
+    # means the line is to the right of center, so the robot needs to
+    # turn right to correct -- in ROS's Twist convention positive
+    # angular.z is a left (counter-clockwise) turn, so the correction
+    # needs a negative sign on error.
+    # should_move gates whether the robot is allowed to move at all;
+    # zeroing both linear and angular velocity when it's False (rather
+    # than just not publishing) guarantees the robot doesn't keep
+    # coasting on the last command that was computed before it was told
+    # to stop.
+    if should_move:
+        message.angular.z = -error * KP
+    else:
+        message.linear.x = 0.0
+        message.angular.z = 0.0
+
+    publisher.publish(message)
 
     cv2.rectangle(output, (crop_w_start, crop_h_start), (crop_w_stop, crop_h_stop), (0,0,255), 2)
     cv2.imshow("output", output)
