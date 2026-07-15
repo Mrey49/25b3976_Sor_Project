@@ -28,7 +28,7 @@ lower_bgr_values = np.array([160, 160, 160])
 upper_bgr_values = np.array([255, 255, 255])
 
 def crop_size(height, width):
-    return (height//6, 5*height//6, width//8, 7*width//8)
+    return (height//10, 5*height//6, width//8, 7*width//8)
 
 image_input = 0
 error = 0
