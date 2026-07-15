@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.9">
   <model name="custom_turtlebot">
-    <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+    <pose>0.0156 -0.2937 0.0 0.0 0.0 1.53</pose>
 
     <link name="base_footprint"/>
 
