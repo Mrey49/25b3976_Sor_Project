@@ -12,10 +12,11 @@ import cv_bridge
 
 bridge = cv_bridge.CvBridge()
 
-MIN_AREA = 500 
-MIN_AREA_TRACK = 5000
+MIN_AREA = 150
+MIN_AREA_TRACK = 300
+MAX_AREA_TRACK = 10000   # a real line contour shouldn't approach filling the whole ROI
 LINEAR_SPEED = 0.2
-KP = 1.5/100 
+KP = 1.5/100
 LOSS_FACTOR = 1.2
 TIMER_PERIOD = 0.06
 FINALIZATION_PERIOD = 4
@@ -24,8 +25,25 @@ SEARCH_TIMEOUT = int(1.0 / TIMER_PERIOD)   # ~1 second of holding the last turn 
 SEARCH_ANGULAR_SPEED = 0.5
 LOST_LINEAR_SPEED = LINEAR_SPEED * 0.4     # reduced (not zero) forward speed while the line is lost
 
+# Minimum horizontal distance (in full-image pixels) a marker candidate's
+# centroid must be from the line's centroid to be trusted as a real marker
+# rather than a fragment of the line itself (e.g. from glare/occlusion
+# splitting one blob into pieces that individually fall under
+# MIN_AREA_TRACK).
+MIN_MARK_LINE_DISTANCE = 40
+
+# Number of consecutive frames a right-side marker must be ABSENT before
+# the lap-count debounce re-arms. Without this, a single frame of flicker
+# (e.g. the marker's contour briefly failing the distance/area check, or
+# mark_side briefly reading "left"/None due to line-position noise) clears
+# just_seen_right_mark and lets the very same physical marker get counted
+# twice in the span of a few frames -- which is what was causing false
+# "Track Completed" events. Requiring several consecutive absent frames
+# means only an actual departure-and-return of a marker re-arms the count.
+MARK_CLEAR_FRAMES = 3
+
 lower_bgr_values = np.array([100, 100, 100])
-upper_bgr_values = np.array([255, 255, 255])
+upper_bgr_values = np.array([200, 200, 200])
 
 def crop_size(height, width):
     return (height//10, 5*height//6, width//8, 7*width//8)
@@ -38,14 +56,16 @@ should_move = False
 right_mark_count = 0
 finalization_countdown = None
 lost_frame_count = 0
+mark_absent_count = 0
 
 
 def start_follower_callback(request, response):
-    global should_move, right_mark_count, finalization_countdown, lost_frame_count
+    global should_move, right_mark_count, finalization_countdown, lost_frame_count, mark_absent_count
     should_move = True
     right_mark_count = 0
     finalization_countdown = None
     lost_frame_count = 0
+    mark_absent_count = 0
     return response
 
 def stop_follower_callback(request, response):
@@ -90,12 +110,18 @@ def get_contour_data(mask, out):
         # since the crop only affects columns (see crop_size).
         cx_full = cx + crop_w_start
 
+        if area > MAX_AREA_TRACK:
+            # Almost certainly a floor patch matching the color range,
+            # not a real line or marker - discard it outright.
+            continue
+
         if area >= MIN_AREA_TRACK:
             line_candidates.append((area, cx_full, cy))
             cv2.circle(out, (cx, cy), 5, (0, 255, 0), -1)
         else:
             mark_candidates.append((area, cx_full, cy))
             cv2.circle(out, (cx, cy), 5, (255, 0, 0), -1)
+            print(f"[DEBUG] mark candidate: area={area:.1f} cx={cx_full} cy={cy}", flush=True)
 
     if line_candidates:
         # Largest track-sized blob wins.
@@ -104,10 +130,21 @@ def get_contour_data(mask, out):
         line['y'] = cy
 
     if mark_candidates:
-        # Largest marker-sized blob wins (most reliable detection).
-        _, cx_full, cy = max(mark_candidates, key=lambda c: c[0])
-        mark['x'] = cx_full
-        mark['y'] = cy
+        # Largest marker-sized blob wins (most reliable detection) --
+        # but only if it's actually spatially separate from the line.
+        # Without this check, a fragment of the line itself (broken off
+        # by glare/occlusion into a sub-MIN_AREA_TRACK piece) can get
+        # misclassified as a lap marker just because it happens to be
+        # smaller and to one side.
+        best_area, cx_full, cy = max(mark_candidates, key=lambda c: c[0])
+        if not line or abs(cx_full - line.get('x', cx_full)) > MIN_MARK_LINE_DISTANCE:
+            mark['x'] = cx_full
+            mark['y'] = cy
+            print(f"[DEBUG] mark WINNER: x={cx_full} y={cy} area={best_area:.1f} "
+                  f"(dist_from_line={abs(cx_full - line.get('x', cx_full)) if line else 'N/A'})", flush=True)
+        else:
+            print(f"[DEBUG] mark candidate REJECTED (too close to line): x={cx_full} y={cy} "
+                  f"area={best_area:.1f} line_x={line.get('x')}", flush=True)
 
     if mark and line:
         mark_side = "right" if mark['x'] > line['x'] else "left"
@@ -118,7 +155,7 @@ def get_contour_data(mask, out):
 
 def timer_callback():
     global error, image_input, just_seen_line, just_seen_right_mark
-    global should_move, right_mark_count, finalization_countdown, lost_frame_count
+    global should_move, right_mark_count, finalization_countdown, lost_frame_count, mark_absent_count
 
     print(f"[DEBUG] timer_callback: fired, image_input_type={type(image_input).__name__}", flush=True)
 
@@ -184,13 +221,21 @@ def timer_callback():
     # the beginning of the lap; the second right-side crossing is the
     # robot coming back around to that same marker, i.e. one full lap.
     if mark_side == "right":
+        mark_absent_count = 0
         if abs(error) < MAX_ERROR and not just_seen_right_mark:
             right_mark_count += 1
             just_seen_right_mark = True
+            print(f"[DEBUG] RIGHT MARK COUNTED #{right_mark_count} | error={error:.2f} mark_side={mark_side}", flush=True)
             if right_mark_count >= 2 and finalization_countdown is None:
                 finalization_countdown = int(FINALIZATION_PERIOD / TIMER_PERIOD)
+                print(f"[DEBUG] FINALIZATION ARMED at right_mark_count={right_mark_count}", flush=True)
     else:
-        just_seen_right_mark = False
+        # Don't re-arm the debounce on a single frame of flicker -- only
+        # once the marker has been genuinely absent (not just briefly
+        # misclassified) for MARK_CLEAR_FRAMES in a row.
+        mark_absent_count += 1
+        if mark_absent_count >= MARK_CLEAR_FRAMES:
+            just_seen_right_mark = False
 
     # Proportional steering & command gating.
     # Steering scales with how far off-center the line is. error > 0
