@@ -24,22 +24,9 @@ MAX_ERROR = 30
 SEARCH_TIMEOUT = int(1.0 / TIMER_PERIOD)   # ~1 second of holding the last turn before actively searching
 SEARCH_ANGULAR_SPEED = 0.5
 LOST_LINEAR_SPEED = LINEAR_SPEED * 0.4     # reduced (not zero) forward speed while the line is lost
+ERROR_SMOOTHING = 0.5   # 0 = no smoothing (raw error), closer to 1 = heavier smoothing
 
-# Minimum horizontal distance (in full-image pixels) a marker candidate's
-# centroid must be from the line's centroid to be trusted as a real marker
-# rather than a fragment of the line itself (e.g. from glare/occlusion
-# splitting one blob into pieces that individually fall under
-# MIN_AREA_TRACK).
 MIN_MARK_LINE_DISTANCE = 40
-
-# Number of consecutive frames a right-side marker must be ABSENT before
-# the lap-count debounce re-arms. Without this, a single frame of flicker
-# (e.g. the marker's contour briefly failing the distance/area check, or
-# mark_side briefly reading "left"/None due to line-position noise) clears
-# just_seen_right_mark and lets the very same physical marker get counted
-# twice in the span of a few frames -- which is what was causing false
-# "Track Completed" events. Requiring several consecutive absent frames
-# means only an actual departure-and-return of a marker re-arms the count.
 MARK_CLEAR_FRAMES = 3
 
 lower_bgr_values = np.array([100, 100, 100])
@@ -86,11 +73,6 @@ def get_contour_data(mask, out):
     mark = {}
     line = {}
 
-    # The track line is a big blob (MIN_AREA_TRACK+), a lap marker is a
-    # smaller blob (MIN_AREA..MIN_AREA_TRACK). Anything below MIN_AREA is
-    # noise and gets discarded. If several marker-sized blobs show up in
-    # one frame, only the largest is trustworthy, so we keep candidates
-    # and pick the best one at the end instead of overwriting blindly.
     line_candidates = []
     mark_candidates = []
 
@@ -101,18 +83,12 @@ def get_contour_data(mask, out):
         if area < MIN_AREA:
             continue
 
-        # Centroid in mask (cropped) coordinates.
         cx = int(M['m10'] / area)
         cy = int(M['m01'] / area)
 
-        # The mask came from a horizontally-cropped slice of the frame,
-        # so x needs to be re-based onto the full image. y is untouched
-        # since the crop only affects columns (see crop_size).
         cx_full = cx + crop_w_start
 
         if area > MAX_AREA_TRACK:
-            # Almost certainly a floor patch matching the color range,
-            # not a real line or marker - discard it outright.
             continue
 
         if area >= MIN_AREA_TRACK:
@@ -124,18 +100,11 @@ def get_contour_data(mask, out):
             print(f"[DEBUG] mark candidate: area={area:.1f} cx={cx_full} cy={cy}", flush=True)
 
     if line_candidates:
-        # Largest track-sized blob wins.
         _, cx_full, cy = max(line_candidates, key=lambda c: c[0])
         line['x'] = cx_full
         line['y'] = cy
 
     if mark_candidates:
-        # Largest marker-sized blob wins (most reliable detection) --
-        # but only if it's actually spatially separate from the line.
-        # Without this check, a fragment of the line itself (broken off
-        # by glare/occlusion into a sub-MIN_AREA_TRACK piece) can get
-        # misclassified as a lap marker just because it happens to be
-        # smaller and to one side.
         best_area, cx_full, cy = max(mark_candidates, key=lambda c: c[0])
         if not line or abs(cx_full - line.get('x', cx_full)) > MIN_MARK_LINE_DISTANCE:
             mark['x'] = cx_full
@@ -170,6 +139,13 @@ def timer_callback():
 
     crop = image[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop]
     mask = cv2.inRange(crop, lower_bgr_values, upper_bgr_values)
+    # Clean up the raw mask before contour detection: closing (dilate then
+    # erode) merges small gaps/fragments in the line into one solid blob,
+    # and removes isolated single-pixel noise, so the contour count and
+    # line position stop flickering frame to frame.
+    kernel = np.ones((5, 5), np.uint8)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+    mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
     cv2.imshow("mask", mask)
     colors, counts = np.unique(crop.reshape(-1, 3), axis=0, return_counts=True)
     top = np.argsort(-counts)[:8]
@@ -184,18 +160,9 @@ def timer_callback():
 
     message = Twist()
 
-    # Tracking error & line-loss handling.
-    # While the line is visible, error is how far its centroid sits from
-    # the horizontal center of the frame (positive = line is to the
-    # right). When it disappears, we don't want to suddenly go straight
-    # (which would likely send the robot off the track) -- instead we
-    # amplify whatever error we last had, betting that the track kept
-    # curving the same direction, and stop advancing until it's found
-    # again. just_seen_line lets us only do the amplification once, right
-    # when the line is first lost, rather than growing it every frame
-    # it's missing.
     if line:
-        error = line['x'] - width / 2
+        raw_error = line['x'] - width / 2
+        error = ERROR_SMOOTHING * error + (1 - ERROR_SMOOTHING) * raw_error
         just_seen_line = True
         lost_frame_count = 0
         message.linear.x = LINEAR_SPEED
@@ -208,18 +175,6 @@ def timer_callback():
 
     print(f"[DEBUG] error={error:.2f} lost_frame_count={lost_frame_count} just_seen_line={just_seen_line}", flush=True)
 
-    # Lap completion detection.
-    # A marker seen on the right side of the line, while the robot is
-    # roughly centered on the track (small |error|), counts as a valid
-    # crossing. The same physical marker stays in view for many
-    # consecutive frames, so just_seen_right_mark debounces that into a
-    # single count per crossing: it's set the first frame a right-side
-    # marker is validly seen, and only cleared once the marker is no
-    # longer seen on the right (including when it's gone entirely),
-    # arming the count for the next crossing.
-    # The first right-side crossing is just the start/finish marker at
-    # the beginning of the lap; the second right-side crossing is the
-    # robot coming back around to that same marker, i.e. one full lap.
     if mark_side == "right":
         mark_absent_count = 0
         if abs(error) < MAX_ERROR and not just_seen_right_mark:
@@ -230,32 +185,10 @@ def timer_callback():
                 finalization_countdown = int(FINALIZATION_PERIOD / TIMER_PERIOD)
                 print(f"[DEBUG] FINALIZATION ARMED at right_mark_count={right_mark_count}", flush=True)
     else:
-        # Don't re-arm the debounce on a single frame of flicker -- only
-        # once the marker has been genuinely absent (not just briefly
-        # misclassified) for MARK_CLEAR_FRAMES in a row.
         mark_absent_count += 1
         if mark_absent_count >= MARK_CLEAR_FRAMES:
             just_seen_right_mark = False
 
-    # Proportional steering & command gating.
-    # Steering scales with how far off-center the line is. error > 0
-    # means the line is to the right of center, so the robot needs to
-    # turn right to correct -- in ROS's Twist convention positive
-    # angular.z is a left (counter-clockwise) turn, so the correction
-    # needs a negative sign on error.
-    # should_move gates whether the robot is allowed to move at all;
-    # zeroing both linear and angular velocity when it's False (rather
-    # than just not publishing) guarantees the robot doesn't keep
-    # coasting on the last command that was computed before it was told
-    # to stop.
-    #
-    # If the line has been missing for a while, holding the same
-    # (possibly amplified) turn forever isn't enough -- the robot may
-    # have already turned past where the line would reappear. Past
-    # SEARCH_TIMEOUT frames of not seeing it, switch to an active
-    # search: rotate in place, continuing in whichever direction the
-    # line was last seen (same sign convention as the normal correction),
-    # at a fixed rate, until the line is reacquired.
     if should_move:
         if lost_frame_count > SEARCH_TIMEOUT:
             message.linear.x = 0.0
@@ -279,11 +212,9 @@ def timer_callback():
             finalization_countdown -= 1
         elif finalization_countdown == 0:
             should_move = False
-            # Stop the robot
             empty_message = Twist()
             publisher.publish(empty_message)
             print("Track Completed")
-            # Shutdown the node
             cv2.destroyAllWindows()
             node.destroy_node()
             rclpy.shutdown()
