@@ -24,11 +24,11 @@ SEARCH_TIMEOUT = int(1.0 / TIMER_PERIOD)   # ~1 second of holding the last turn 
 SEARCH_ANGULAR_SPEED = 0.5
 LOST_LINEAR_SPEED = LINEAR_SPEED * 0.4     # reduced (not zero) forward speed while the line is lost
 
-lower_bgr_values = np.array([31,  42,  53])
+lower_bgr_values = np.array([160, 160, 160])
 upper_bgr_values = np.array([255, 255, 255])
 
 def crop_size(height, width):
-    return (1*height//3, height, width//4, 3*width//4)
+    return (height//6, 5*height//6, width//8, 7*width//8)
 
 image_input = 0
 error = 0
