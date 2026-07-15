@@ -134,7 +134,11 @@ def timer_callback():
     crop = image[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop]
     mask = cv2.inRange(crop, lower_bgr_values, upper_bgr_values)
     cv2.imshow("mask", mask)
-    print("Center BGR:", crop[crop.shape[0]//2, crop.shape[1]//2], flush=True)
+    colors, counts = np.unique(crop.reshape(-1, 3), axis=0, return_counts=True)
+    top = np.argsort(-counts)[:8]
+    print("Top colors in crop (BGR: count):", flush=True)
+    for i in top:
+        print(f"  {colors[i]}: {counts[i]}", flush=True)
 
     output = image
     line, mark_side = get_contour_data(mask, output[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop])
