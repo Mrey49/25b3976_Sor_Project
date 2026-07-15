@@ -133,6 +133,8 @@ def timer_callback():
 
     crop = image[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop]
     mask = cv2.inRange(crop, lower_bgr_values, upper_bgr_values)
+    cv2.imshow("mask", mask)
+    print("Center BGR:", crop[crop.shape[0]//2, crop.shape[1]//2], flush=True)
 
     output = image
     line, mark_side = get_contour_data(mask, output[crop_h_start:crop_h_stop, crop_w_start:crop_w_stop])
