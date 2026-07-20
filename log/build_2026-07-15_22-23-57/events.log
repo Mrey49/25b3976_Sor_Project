@@ -1,0 +1,148 @@
+[0.000000] (-) TimerEvent: {}
+[0.001785] (follower) JobQueued: {'identifier': 'follower', 'dependencies': OrderedDict()}
+[0.005720] (follower) JobStarted: {'identifier': 'follower'}
+[0.099815] (-) TimerEvent: {}
+[0.201571] (-) TimerEvent: {}
+[0.302377] (-) TimerEvent: {}
+[0.404159] (-) TimerEvent: {}
+[0.506034] (-) TimerEvent: {}
+[0.607739] (-) TimerEvent: {}
+[0.708961] (-) TimerEvent: {}
+[0.809932] (-) TimerEvent: {}
+[0.911462] (-) TimerEvent: {}
+[1.012357] (-) TimerEvent: {}
+[1.113507] (-) TimerEvent: {}
+[1.215350] (-) TimerEvent: {}
+[1.317735] (-) TimerEvent: {}
+[1.419962] (-) TimerEvent: {}
+[1.522192] (-) TimerEvent: {}
+[1.624704] (-) TimerEvent: {}
+[1.726694] (-) TimerEvent: {}
+[1.828821] (-) TimerEvent: {}
+[1.931199] (-) TimerEvent: {}
+[2.033200] (-) TimerEvent: {}
+[2.135375] (-) TimerEvent: {}
+[2.237457] (-) TimerEvent: {}
+[2.339567] (-) TimerEvent: {}
+[2.441607] (-) TimerEvent: {}
+[2.543665] (-) TimerEvent: {}
+[2.645730] (-) TimerEvent: {}
+[2.747438] (-) TimerEvent: {}
+[2.849488] (-) TimerEvent: {}
+[2.951569] (-) TimerEvent: {}
+[3.052307] (-) TimerEvent: {}
+[3.154348] (-) TimerEvent: {}
+[3.256649] (-) TimerEvent: {}
+[3.358951] (-) TimerEvent: {}
+[3.460926] (-) TimerEvent: {}
+[3.562968] (-) TimerEvent: {}
+[3.665022] (-) TimerEvent: {}
+[3.767264] (-) TimerEvent: {}
+[3.869377] (-) TimerEvent: {}
+[3.971475] (-) TimerEvent: {}
+[4.073518] (-) TimerEvent: {}
+[4.174891] (-) TimerEvent: {}
+[4.276930] (-) TimerEvent: {}
+[4.379044] (-) TimerEvent: {}
+[4.481094] (-) TimerEvent: {}
+[4.582696] (-) TimerEvent: {}
+[4.685565] (-) TimerEvent: {}
+[4.788702] (-) TimerEvent: {}
+[4.889950] (-) TimerEvent: {}
+[4.993066] (-) TimerEvent: {}
+[5.016805] (follower) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/mrey49/25b3976_Sor_Project/build/follower/build', '--no-deps', 'symlink_data'], 'cwd': '/home/mrey49/25b3976_Sor_Project/build/follower', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share:/home/mrey49/gazebo_models:/home/mrey49/sor_ws/src/sensors_and_perception/gazebo_models', 'USER': 'mrey49', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'WT_PROFILE_ID': '{61c54bbd-c2c6-5271-96e7-009a87ff44bf}', 'HOME': '/home/mrey49', 'OLDPWD': '/home/mrey49/25b3976_Sor_Project', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-24.04', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/mrey49/25b3976_Sor_Project/install', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'mrey49', 'NAME': 'REYANSHSAI3026LAPTOP', 'WSL_INTEROP': '/run/WSL/401_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/msys64/ucrt64/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/omsairam/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/omsairam/AppData/Local/Programs/Python/Python312/:/mnt/c/msys64/ucrt64/bin:/mnt/c/Users/omsairam/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/omsairam/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/omsairam/AppData/Local/Python/bin:/mnt/c/Users/omsairam/AppData/Roaming/npm:/snap/bin', 'WT_SESSION': '8ca41701-005c-4e90-be6f-6c57422e7e8b', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/mrey49/25b3976_Sor_Project/install/follower:/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/mrey49/25b3976_Sor_Project/build/follower', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:/home/mrey49/25b3976_Sor_Project/build/follower:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor', 'WSLENV': 'WT_SESSION:WT_PROFILE_ID:'}, 'shell': False}
+[5.094283] (-) TimerEvent: {}
+[5.197312] (-) TimerEvent: {}
+[5.300289] (-) TimerEvent: {}
+[5.403388] (-) TimerEvent: {}
+[5.505275] (-) TimerEvent: {}
+[5.556466] (follower) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/dist.py:744: SetuptoolsDeprecationWarning: Invalid dash-separated options\n'}
+[5.557426] (follower) StderrLine: {'line': b'!!\n'}
+[5.557689] (follower) StderrLine: {'line': b'\n'}
+[5.557898] (follower) StderrLine: {'line': b'        ********************************************************************************\n'}
+[5.558105] (follower) StderrLine: {'line': b"        Usage of dash-separated 'script-dir' will not be supported in future\n"}
+[5.558311] (follower) StderrLine: {'line': b"        versions. Please use the underscore name 'script_dir' instead.\n"}
+[5.558513] (follower) StderrLine: {'line': b'\n'}
+[5.559129] (follower) StderrLine: {'line': b'        This deprecation is overdue, please update your project and remove deprecated\n'}
+[5.559376] (follower) StderrLine: {'line': b'        calls to avoid build errors in the future.\n'}
+[5.559578] (follower) StderrLine: {'line': b'\n'}
+[5.559778] (follower) StderrLine: {'line': b'        See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.\n'}
+[5.559979] (follower) StderrLine: {'line': b'        ********************************************************************************\n'}
+[5.560179] (follower) StderrLine: {'line': b'\n'}
+[5.560376] (follower) StderrLine: {'line': b'!!\n'}
+[5.560573] (follower) StderrLine: {'line': b'  opt = self.warn_dash_deprecation(opt, section)\n'}
+[5.606641] (-) TimerEvent: {}
+[5.709582] (-) TimerEvent: {}
+[5.812571] (-) TimerEvent: {}
+[5.915505] (-) TimerEvent: {}
+[6.018467] (-) TimerEvent: {}
+[6.119660] (-) TimerEvent: {}
+[6.222786] (-) TimerEvent: {}
+[6.325737] (-) TimerEvent: {}
+[6.331360] (follower) StdoutLine: {'line': b'running develop\n'}
+[6.427167] (-) TimerEvent: {}
+[6.530040] (-) TimerEvent: {}
+[6.633026] (-) TimerEvent: {}
+[6.735974] (-) TimerEvent: {}
+[6.839113] (-) TimerEvent: {}
+[6.942186] (-) TimerEvent: {}
+[7.045200] (-) TimerEvent: {}
+[7.148214] (-) TimerEvent: {}
+[7.176992] (follower) StdoutLine: {'line': b'running egg_info\n'}
+[7.178059] (follower) StdoutLine: {'line': b'creating follower.egg-info\n'}
+[7.250141] (-) TimerEvent: {}
+[7.311600] (follower) StdoutLine: {'line': b'writing follower.egg-info/PKG-INFO\n'}
+[7.313099] (follower) StdoutLine: {'line': b'writing dependency_links to follower.egg-info/dependency_links.txt\n'}
+[7.313961] (follower) StdoutLine: {'line': b'writing entry points to follower.egg-info/entry_points.txt\n'}
+[7.316099] (follower) StdoutLine: {'line': b'writing requirements to follower.egg-info/requires.txt\n'}
+[7.317519] (follower) StdoutLine: {'line': b'writing top-level names to follower.egg-info/top_level.txt\n'}
+[7.318032] (follower) StdoutLine: {'line': b"writing manifest file 'follower.egg-info/SOURCES.txt'\n"}
+[7.351157] (-) TimerEvent: {}
+[7.454115] (-) TimerEvent: {}
+[7.475152] (follower) StdoutLine: {'line': b"reading manifest file 'follower.egg-info/SOURCES.txt'\n"}
+[7.480781] (follower) StdoutLine: {'line': b"writing manifest file 'follower.egg-info/SOURCES.txt'\n"}
+[7.556044] (-) TimerEvent: {}
+[7.565737] (follower) StdoutLine: {'line': b'running build_ext\n'}
+[7.566369] (follower) StdoutLine: {'line': b'Creating /home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages/follower.egg-link (link to .)\n'}
+[7.568934] (follower) StdoutLine: {'line': b'Installing follower script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower\n'}
+[7.571835] (follower) StdoutLine: {'line': b'Installing tester script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower\n'}
+[7.573170] (follower) StdoutLine: {'line': b'\n'}
+[7.573652] (follower) StdoutLine: {'line': b'Installed /home/mrey49/25b3976_Sor_Project/build/follower\n'}
+[7.574310] (follower) StdoutLine: {'line': b'running symlink_data\n'}
+[7.575221] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index\n'}
+[7.576581] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index\n'}
+[7.578543] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages\n'}
+[7.581582] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/resource/follower -> /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages\n'}
+[7.584300] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/package.xml -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower\n'}
+[7.585421] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch\n'}
+[7.587159] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/sor_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch\n'}
+[7.589763] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/new_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch\n'}
+[7.592233] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds\n'}
+[7.594228] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/new_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds\n'}
+[7.596387] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/sor_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds\n'}
+[7.600114] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models\n'}
+[7.602827] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track\n'}
+[7.605081] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track\n'}
+[7.607482] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track\n'}
+[7.610804] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials\n'}
+[7.612793] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures\n'}
+[7.615625] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/materials/textures/sor_track.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures\n'}
+[7.618114] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot\n'}
+[7.620176] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot\n'}
+[7.622504] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot\n'}
+[7.624440] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes\n'}
+[7.626420] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/tire.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes\n'}
+[7.628460] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/waffle_pi_base.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes\n'}
+[7.630408] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/lds.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes\n'}
+[7.633803] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2\n'}
+[7.636000] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2\n'}
+[7.641082] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2\n'}
+[7.643175] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials\n'}
+[7.644948] (follower) StdoutLine: {'line': b'creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures\n'}
+[7.646946] (follower) StdoutLine: {'line': b'symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/materials/textures/Track2.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures\n'}
+[7.656534] (-) TimerEvent: {}
+[7.759041] (follower) CommandEnded: {'returncode': 0}
+[7.760093] (-) TimerEvent: {}
+[7.863168] (-) TimerEvent: {}
+[7.894386] (follower) JobEnded: {'identifier': 'follower', 'rc': 0}
+[7.899842] (-) EventReactorShutdown: {}

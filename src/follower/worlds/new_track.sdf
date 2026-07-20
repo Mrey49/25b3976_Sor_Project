@@ -104,7 +104,7 @@
          z=0.01 keeps wheels clear of the ground plane at spawn.
          yaw=0 → robot faces +X (adjust if your track2 runs along a different axis). -->
     <include>
-      <pose>-0.4 0.06 0.01 0 0 0</pose>
+      <pose>-2.0156 -1.4937 0.01 0 0 -1.61</pose>
       <uri>model://custom_turtlebot</uri>
     </include>
 

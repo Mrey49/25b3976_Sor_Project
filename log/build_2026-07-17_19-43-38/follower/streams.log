@@ -1,0 +1,33 @@
+[4.310s] Invoking command in '/home/mrey49/25b3976_Sor_Project/build/follower': PYTHONPATH=/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mrey49/25b3976_Sor_Project/build/follower/build --no-deps symlink_data
+[4.875s] /usr/lib/python3/dist-packages/setuptools/dist.py:744: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[4.876s] !!
+[4.876s] 
+[4.876s]         ********************************************************************************
+[4.876s]         Usage of dash-separated 'script-dir' will not be supported in future
+[4.877s]         versions. Please use the underscore name 'script_dir' instead.
+[4.877s] 
+[4.877s]         This deprecation is overdue, please update your project and remove deprecated
+[4.877s]         calls to avoid build errors in the future.
+[4.878s] 
+[4.878s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[4.878s]         ********************************************************************************
+[4.878s] 
+[4.879s] !!
+[4.879s]   opt = self.warn_dash_deprecation(opt, section)
+[5.646s] running develop
+[6.565s] running egg_info
+[6.640s] writing follower.egg-info/PKG-INFO
+[6.698s] writing dependency_links to follower.egg-info/dependency_links.txt
+[6.700s] writing entry points to follower.egg-info/entry_points.txt
+[6.701s] writing requirements to follower.egg-info/requires.txt
+[6.702s] writing top-level names to follower.egg-info/top_level.txt
+[6.866s] reading manifest file 'follower.egg-info/SOURCES.txt'
+[6.870s] writing manifest file 'follower.egg-info/SOURCES.txt'
+[6.948s] running build_ext
+[6.949s] Creating /home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages/follower.egg-link (link to .)
+[6.951s] Installing follower script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+[6.955s] Installing tester script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+[6.957s] 
+[6.958s] Installed /home/mrey49/25b3976_Sor_Project/build/follower
+[6.959s] running symlink_data
+[7.137s] Invoked command in '/home/mrey49/25b3976_Sor_Project/build/follower' returned '0': PYTHONPATH=/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mrey49/25b3976_Sor_Project/build/follower/build --no-deps symlink_data

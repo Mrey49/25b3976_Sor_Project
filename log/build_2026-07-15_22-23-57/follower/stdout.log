@@ -1,0 +1,49 @@
+running develop
+running egg_info
+creating follower.egg-info
+writing follower.egg-info/PKG-INFO
+writing dependency_links to follower.egg-info/dependency_links.txt
+writing entry points to follower.egg-info/entry_points.txt
+writing requirements to follower.egg-info/requires.txt
+writing top-level names to follower.egg-info/top_level.txt
+writing manifest file 'follower.egg-info/SOURCES.txt'
+reading manifest file 'follower.egg-info/SOURCES.txt'
+writing manifest file 'follower.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages/follower.egg-link (link to .)
+Installing follower script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+Installing tester script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+
+Installed /home/mrey49/25b3976_Sor_Project/build/follower
+running symlink_data
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/resource/follower -> /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/package.xml -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/sor_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/new_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/new_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/sor_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/materials/textures/sor_track.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/tire.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/waffle_pi_base.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/lds.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials
+creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures
+symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/materials/textures/Track2.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures

@@ -1,0 +1,66 @@
+[5.017s] Invoking command in '/home/mrey49/25b3976_Sor_Project/build/follower': PYTHONPATH=/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mrey49/25b3976_Sor_Project/build/follower/build --no-deps symlink_data
+[5.551s] /usr/lib/python3/dist-packages/setuptools/dist.py:744: SetuptoolsDeprecationWarning: Invalid dash-separated options
+[5.552s] !!
+[5.552s] 
+[5.552s]         ********************************************************************************
+[5.552s]         Usage of dash-separated 'script-dir' will not be supported in future
+[5.553s]         versions. Please use the underscore name 'script_dir' instead.
+[5.553s] 
+[5.553s]         This deprecation is overdue, please update your project and remove deprecated
+[5.554s]         calls to avoid build errors in the future.
+[5.554s] 
+[5.554s]         See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.
+[5.554s]         ********************************************************************************
+[5.554s] 
+[5.555s] !!
+[5.555s]   opt = self.warn_dash_deprecation(opt, section)
+[6.326s] running develop
+[7.172s] running egg_info
+[7.172s] creating follower.egg-info
+[7.307s] writing follower.egg-info/PKG-INFO
+[7.308s] writing dependency_links to follower.egg-info/dependency_links.txt
+[7.308s] writing entry points to follower.egg-info/entry_points.txt
+[7.311s] writing requirements to follower.egg-info/requires.txt
+[7.312s] writing top-level names to follower.egg-info/top_level.txt
+[7.313s] writing manifest file 'follower.egg-info/SOURCES.txt'
+[7.470s] reading manifest file 'follower.egg-info/SOURCES.txt'
+[7.475s] writing manifest file 'follower.egg-info/SOURCES.txt'
+[7.560s] running build_ext
+[7.561s] Creating /home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages/follower.egg-link (link to .)
+[7.563s] Installing follower script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+[7.567s] Installing tester script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower
+[7.568s] 
+[7.568s] Installed /home/mrey49/25b3976_Sor_Project/build/follower
+[7.569s] running symlink_data
+[7.570s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index
+[7.571s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index
+[7.573s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages
+[7.576s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/resource/follower -> /home/mrey49/25b3976_Sor_Project/install/follower/share/ament_index/resource_index/packages
+[7.579s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/package.xml -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower
+[7.580s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+[7.582s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/sor_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+[7.584s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/launch/new_track.launch.py -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/launch
+[7.587s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+[7.589s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/new_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+[7.591s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/worlds/sor_track.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/worlds
+[7.595s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models
+[7.597s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+[7.600s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+[7.602s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track
+[7.605s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials
+[7.607s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures
+[7.610s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/sor_track/materials/textures/sor_track.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/sor_track/materials/textures
+[7.613s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+[7.615s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+[7.617s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot
+[7.619s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+[7.621s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/tire.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+[7.623s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/waffle_pi_base.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+[7.625s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/custom_turtlebot/meshes/lds.dae -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/custom_turtlebot/meshes
+[7.628s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+[7.630s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.sdf -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+[7.636s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/model.config -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2
+[7.638s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials
+[7.639s] creating /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures
+[7.641s] symbolically linking /home/mrey49/25b3976_Sor_Project/build/follower/models/track2/materials/textures/Track2.png -> /home/mrey49/25b3976_Sor_Project/install/follower/share/follower/models/track2/materials/textures
+[7.754s] Invoked command in '/home/mrey49/25b3976_Sor_Project/build/follower' returned '0': PYTHONPATH=/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/mrey49/25b3976_Sor_Project/build/follower/build --no-deps symlink_data

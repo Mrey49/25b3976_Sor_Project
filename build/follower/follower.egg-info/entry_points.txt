@@ -1,0 +1,3 @@
+[console_scripts]
+follower = follower.follower_node:main
+tester = follower.test_topic:main

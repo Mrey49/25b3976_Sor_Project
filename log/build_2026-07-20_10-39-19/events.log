@@ -1,0 +1,137 @@
+[0.000000] (-) TimerEvent: {}
+[0.000971] (follower) JobQueued: {'identifier': 'follower', 'dependencies': OrderedDict()}
+[0.001626] (follower) JobStarted: {'identifier': 'follower'}
+[0.093472] (-) TimerEvent: {}
+[0.194651] (-) TimerEvent: {}
+[0.296497] (-) TimerEvent: {}
+[0.397309] (-) TimerEvent: {}
+[0.503593] (-) TimerEvent: {}
+[0.604217] (-) TimerEvent: {}
+[0.704880] (-) TimerEvent: {}
+[0.815587] (-) TimerEvent: {}
+[0.916102] (-) TimerEvent: {}
+[1.016604] (-) TimerEvent: {}
+[1.117033] (-) TimerEvent: {}
+[1.217623] (-) TimerEvent: {}
+[1.318377] (-) TimerEvent: {}
+[1.421598] (-) TimerEvent: {}
+[1.527928] (-) TimerEvent: {}
+[1.628424] (-) TimerEvent: {}
+[1.729019] (-) TimerEvent: {}
+[1.829886] (-) TimerEvent: {}
+[1.940104] (-) TimerEvent: {}
+[2.043539] (-) TimerEvent: {}
+[2.149459] (-) TimerEvent: {}
+[2.250032] (-) TimerEvent: {}
+[2.350800] (-) TimerEvent: {}
+[2.451353] (-) TimerEvent: {}
+[2.557512] (-) TimerEvent: {}
+[2.663765] (-) TimerEvent: {}
+[2.764511] (-) TimerEvent: {}
+[2.865121] (-) TimerEvent: {}
+[2.975555] (-) TimerEvent: {}
+[3.076599] (-) TimerEvent: {}
+[3.178034] (-) TimerEvent: {}
+[3.280908] (-) TimerEvent: {}
+[3.381627] (-) TimerEvent: {}
+[3.482526] (-) TimerEvent: {}
+[3.583522] (-) TimerEvent: {}
+[3.687553] (-) TimerEvent: {}
+[3.787986] (-) TimerEvent: {}
+[3.888603] (-) TimerEvent: {}
+[3.991965] (-) TimerEvent: {}
+[4.093171] (-) TimerEvent: {}
+[4.194019] (-) TimerEvent: {}
+[4.294553] (-) TimerEvent: {}
+[4.395404] (-) TimerEvent: {}
+[4.495967] (-) TimerEvent: {}
+[4.599173] (-) TimerEvent: {}
+[4.701059] (-) TimerEvent: {}
+[4.803648] (-) TimerEvent: {}
+[4.904164] (-) TimerEvent: {}
+[5.007184] (-) TimerEvent: {}
+[5.108289] (-) TimerEvent: {}
+[5.208798] (-) TimerEvent: {}
+[5.316817] (-) TimerEvent: {}
+[5.417452] (-) TimerEvent: {}
+[5.523821] (-) TimerEvent: {}
+[5.625562] (-) TimerEvent: {}
+[5.727710] (-) TimerEvent: {}
+[5.828363] (-) TimerEvent: {}
+[5.937332] (-) TimerEvent: {}
+[6.040924] (-) TimerEvent: {}
+[6.141495] (-) TimerEvent: {}
+[6.245601] (-) TimerEvent: {}
+[6.348433] (-) TimerEvent: {}
+[6.451088] (-) TimerEvent: {}
+[6.551593] (-) TimerEvent: {}
+[6.655632] (-) TimerEvent: {}
+[6.738683] (follower) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--editable', '--build-directory', '/home/mrey49/25b3976_Sor_Project/build/follower/build', '--no-deps', 'symlink_data'], 'cwd': '/home/mrey49/25b3976_Sor_Project/build/follower', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share:/home/mrey49/gazebo_models:/home/mrey49/sor_ws/src/sensors_and_perception/gazebo_models', 'USER': 'mrey49', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'WT_PROFILE_ID': '{61c54bbd-c2c6-5271-96e7-009a87ff44bf}', 'HOME': '/home/mrey49', 'OLDPWD': '/home/mrey49', 'ROS_PYTHON_VERSION': '3', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'WSL_DISTRO_NAME': 'Ubuntu-24.04', 'WAYLAND_DISPLAY': 'wayland-0', 'ROS_DISTRO': 'jazzy', 'LOGNAME': 'mrey49', 'NAME': 'REYANSHSAI3026LAPTOP', 'WSL_INTEROP': '/run/WSL/622_interop', 'PULSE_SERVER': 'unix:/mnt/wslg/PulseServer', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm-256color', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/ProgramData/Oracle/Java/javapath:/mnt/c/msys64/ucrt64/bin:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/nodejs/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/omsairam/AppData/Local/Programs/Python/Python312/Scripts/:/mnt/c/Users/omsairam/AppData/Local/Programs/Python/Python312/:/mnt/c/msys64/ucrt64/bin:/mnt/c/Users/omsairam/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/omsairam/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/omsairam/AppData/Local/Python/bin:/mnt/c/Users/omsairam/AppData/Roaming/npm:/snap/bin', 'WT_SESSION': 'dd5fe5d2-e681-4c85-9459-5398b66bbafd', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/opt/ros/jazzy', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/mrey49/25b3976_Sor_Project/build/follower', 'XDG_DATA_DIRS': '/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/mrey49/25b3976_Sor_Project/build/follower/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages:/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'WSL2_GUI_APPS_ENABLED': '1', 'HOSTTYPE': 'x86_64', 'CMAKE_PREFIX_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor', 'WSLENV': 'WT_SESSION:WT_PROFILE_ID:'}, 'shell': False}
+[6.758976] (-) TimerEvent: {}
+[6.859524] (-) TimerEvent: {}
+[6.960082] (-) TimerEvent: {}
+[7.061873] (-) TimerEvent: {}
+[7.162568] (-) TimerEvent: {}
+[7.263240] (-) TimerEvent: {}
+[7.343791] (follower) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/dist.py:744: SetuptoolsDeprecationWarning: Invalid dash-separated options\n'}
+[7.348232] (follower) StderrLine: {'line': b'!!\n'}
+[7.348539] (follower) StderrLine: {'line': b'\n'}
+[7.348851] (follower) StderrLine: {'line': b'        ********************************************************************************\n'}
+[7.349078] (follower) StderrLine: {'line': b"        Usage of dash-separated 'script-dir' will not be supported in future\n"}
+[7.349320] (follower) StderrLine: {'line': b"        versions. Please use the underscore name 'script_dir' instead.\n"}
+[7.349539] (follower) StderrLine: {'line': b'\n'}
+[7.349797] (follower) StderrLine: {'line': b'        This deprecation is overdue, please update your project and remove deprecated\n'}
+[7.350012] (follower) StderrLine: {'line': b'        calls to avoid build errors in the future.\n'}
+[7.350221] (follower) StderrLine: {'line': b'\n'}
+[7.350401] (follower) StderrLine: {'line': b'        See https://setuptools.pypa.io/en/latest/userguide/declarative_config.html for details.\n'}
+[7.350583] (follower) StderrLine: {'line': b'        ********************************************************************************\n'}
+[7.350841] (follower) StderrLine: {'line': b'\n'}
+[7.351027] (follower) StderrLine: {'line': b'!!\n'}
+[7.351197] (follower) StderrLine: {'line': b'  opt = self.warn_dash_deprecation(opt, section)\n'}
+[7.364181] (-) TimerEvent: {}
+[7.467534] (-) TimerEvent: {}
+[7.568019] (-) TimerEvent: {}
+[7.668535] (-) TimerEvent: {}
+[7.769080] (-) TimerEvent: {}
+[7.869660] (-) TimerEvent: {}
+[7.971561] (-) TimerEvent: {}
+[8.072082] (-) TimerEvent: {}
+[8.175561] (-) TimerEvent: {}
+[8.276143] (-) TimerEvent: {}
+[8.280137] (follower) StdoutLine: {'line': b'running develop\n'}
+[8.376358] (-) TimerEvent: {}
+[8.479555] (-) TimerEvent: {}
+[8.592985] (-) TimerEvent: {}
+[8.693456] (-) TimerEvent: {}
+[8.794650] (-) TimerEvent: {}
+[8.896502] (-) TimerEvent: {}
+[8.997009] (-) TimerEvent: {}
+[9.099580] (-) TimerEvent: {}
+[9.200371] (-) TimerEvent: {}
+[9.302427] (-) TimerEvent: {}
+[9.379633] (follower) StdoutLine: {'line': b'running egg_info\n'}
+[9.402539] (-) TimerEvent: {}
+[9.448874] (follower) StdoutLine: {'line': b'writing follower.egg-info/PKG-INFO\n'}
+[9.450098] (follower) StdoutLine: {'line': b'writing dependency_links to follower.egg-info/dependency_links.txt\n'}
+[9.451279] (follower) StdoutLine: {'line': b'writing entry points to follower.egg-info/entry_points.txt\n'}
+[9.453379] (follower) StdoutLine: {'line': b'writing requirements to follower.egg-info/requires.txt\n'}
+[9.454170] (follower) StdoutLine: {'line': b'writing top-level names to follower.egg-info/top_level.txt\n'}
+[9.503669] (-) TimerEvent: {}
+[9.604323] (-) TimerEvent: {}
+[9.659234] (follower) StdoutLine: {'line': b"reading manifest file 'follower.egg-info/SOURCES.txt'\n"}
+[9.704622] (-) TimerEvent: {}
+[9.719413] (follower) StdoutLine: {'line': b"writing manifest file 'follower.egg-info/SOURCES.txt'\n"}
+[9.806033] (follower) StdoutLine: {'line': b'running build_ext\n'}
+[9.806448] (-) TimerEvent: {}
+[9.808412] (follower) StdoutLine: {'line': b'Creating /home/mrey49/25b3976_Sor_Project/install/follower/lib/python3.12/site-packages/follower.egg-link (link to .)\n'}
+[9.816217] (follower) StdoutLine: {'line': b'Installing follower script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower\n'}
+[9.816707] (follower) StdoutLine: {'line': b'Installing tester script to /home/mrey49/25b3976_Sor_Project/install/follower/lib/follower\n'}
+[9.816945] (follower) StdoutLine: {'line': b'\n'}
+[9.817157] (follower) StdoutLine: {'line': b'Installed /home/mrey49/25b3976_Sor_Project/build/follower\n'}
+[9.817502] (follower) StdoutLine: {'line': b'running symlink_data\n'}
+[9.906617] (-) TimerEvent: {}
+[10.007198] (-) TimerEvent: {}
+[10.024125] (follower) CommandEnded: {'returncode': 0}
+[10.109997] (-) TimerEvent: {}
+[10.126470] (follower) JobEnded: {'identifier': 'follower', 'rc': 0}
+[10.132195] (-) EventReactorShutdown: {}
